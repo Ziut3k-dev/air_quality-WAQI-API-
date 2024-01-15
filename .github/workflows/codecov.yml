@@ -2,13 +2,32 @@ name: Codecov
 on:
   push:
 jobs:
-  upload:
+  code-coverage:
+    name: Check Code Coverage
     runs-on: ubuntu-latest
+
     steps:
-        - name: Upload coverage reports to Codecov
-          uses: codecov/codecov-action@v3
-          with:
-            files: coverage/lcov.info 
-          env:
-            CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
-    
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Install Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+
+      - name: Install Dependencies
+        run: flutter pub get
+
+      - name: Run Flutter Tests
+        run: flutter test --coverage
+
+      - name: Setup LCOV
+        uses: hrishikesh-kadam/setup-lcov@v1
+
+      - name: Report Code Coverage
+        uses: zgosalvez/github-actions-report-lcov@v3
+        with:
+          coverage-files: coverage/lcov.info
+          minimum-coverage: 95
+          artifact-name: code-coverage-report
+          github-token: ${{ secrets.GITHUB_TOKEN }}
