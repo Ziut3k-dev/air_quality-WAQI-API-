@@ -7,9 +7,9 @@ No permissions needed.
 
 ## Usage
 ### Imports
-The location package is also needed for the AirQuality package.
+The location package is also needed for the AirQualityWaqi package.
 ```dart
-import 'package:air_quality/air_quality.dart';
+import 'package:air_quality_waqi/air_quality_waqi.dart';
 ```
 
 ### Initialization
@@ -19,25 +19,25 @@ Example:
 
 ```dart
 String key = 'XXX38456b2b85c92647d8b65090e29f957638c77';
-AirQuality airQuality = new AirQuality(key);
+AirQualityWaqi airQualityWaqi = new AirQualityWaqi(key);
 ```
 
 ### Air Quality Feed Examples
 
 ```dart
 /// Via city name (Munich)
-AirQualityData feedFromCity = 
-    await airQuality.feedFromCity('munich');
+AirQualityWaqiData feedFromCity = 
+    await airQualityWaqi.feedFromCity('munich');
 
 /// Via station ID (Gothenburg weather station)
-AirQualityData feedFromStationId = 
-    await airQuality.feedFromStationId('7867');
+AirQualityWaqiData feedFromStationId = 
+    await airQualityWaqi.feedFromStationId('7867');
 
 /// Via Geo Location (Berlin)
-AirQualityData feedFromGeoLocation = 
-    await airQuality.feedFromGeoLocation('52.6794', '12.5346');
+AirQualityWaqiData feedFromGeoLocation = 
+    await airQualityWaqi.feedFromGeoLocation('52.6794', '12.5346');
 
 /// Via IP (depends on service provider)
-AirQualityData fromIP = 
-    await airQuality.feedFromIP();
+AirQualityWaqiData fromIP = 
+    await airQualityWaqi.feedFromIP();
 ```

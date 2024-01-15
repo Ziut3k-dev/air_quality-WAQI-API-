@@ -1,34 +1,3 @@
-## 4.0.0
-
-- Upgraded to http 1.1.0
-
-## 3.0.0
-
-- Updates Kotlin plugin and AGP
-- Upgrade of compileSdkVersion
-- Upgrade of android embeddings
-
-## 2.0.0
-
-- Migration to null safety
-
-## 1.2.1
-
-- Changed latitude and longitude to be of type double rather than String
-
-## 1.2.0
-
-- Fixed parsing errors which occurred when the AQI values were non-numerical
-- Added an example application
-
-## 1.1.0
-
-- Released as a Flutter package (rather than a plugin).
-
-## 1.0.3
-
-- No longer depends on an external location package.
-
 ## 1.0.0
 
-- Now supports both city name queries as well as Location queries.
+- Fork from https://github.com/cph-cachet/flutter-plugins/tree/master/packages/air_quality

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:air_quality/air_quality.dart';
+import 'package:air_quality_waqi/air_quality_waqi.dart';
 
 enum AppState { NOT_DOWNLOADED, DOWNLOADING, FINISHED_DOWNLOADING }
 
@@ -30,14 +30,14 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   String _key = '9e538456b2b85c92647d8b65090e29f957638c77';
-  late AirQuality _airQuality;
+  late AirQualityWaqi _airQuality;
   AppState _state = AppState.NOT_DOWNLOADED;
-  late List<AirQualityData> _data;
+  late List<AirQualityWaqiData> _data;
 
   @override
   void initState() {
     super.initState();
-    _airQuality = new AirQuality(_key);
+    _airQuality = new AirQualityWaqi(_key);
   }
 
   Future download() async {
@@ -48,18 +48,18 @@ class _MyHomePageState extends State<MyHomePage> {
     });
 
     /// Via city name (Munich)
-    AirQualityData feedFromCity = await _airQuality.feedFromCity('munich');
+    AirQualityWaqiData feedFromCity = await _airQuality.feedFromCity('munich');
 
     /// Via station ID (Gothenburg weather station)
-    AirQualityData feedFromStationId =
+    AirQualityWaqiData feedFromStationId =
         await _airQuality.feedFromStationId('7867');
 
     /// Via Geo Location (Berlin)
-    AirQualityData feedFromGeoLocation =
+    AirQualityWaqiData feedFromGeoLocation =
         await _airQuality.feedFromGeoLocation(52.6794, 12.5346);
 
     /// Via IP (depends on service provider)
-    AirQualityData fromIP = await _airQuality.feedFromIP();
+    AirQualityWaqiData fromIP = await _airQuality.feedFromIP();
 
     // Update screen state
     setState(() {
