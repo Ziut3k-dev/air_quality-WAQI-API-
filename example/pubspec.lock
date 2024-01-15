@@ -4,10 +4,11 @@ packages:
   air_quality_waqi:
     dependency: "direct main"
     description:
-      path: ".."
-      relative: true
-    source: path
-    version: "1.0.0"
+      name: air_quality_waqi
+      sha256: ff47f8fbc352af432df3f9fa3d4b91fbb3b690dcf194e45a05d2cbf12cfdd3b0
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.2.0"
   async:
     dependency: transitive
     description:

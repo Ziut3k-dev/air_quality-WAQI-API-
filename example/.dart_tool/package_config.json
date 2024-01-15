@@ -3,7 +3,7 @@
   "packages": [
     {
       "name": "air_quality_waqi",
-      "rootUri": "../../",
+      "rootUri": "file:///Users/kychu/.pub-cache/hosted/pub.dev/air_quality_waqi-1.2.0",
       "packageUri": "lib/",
       "languageVersion": "2.17"
     },
@@ -164,7 +164,7 @@
       "languageVersion": "2.12"
     }
   ],
-  "generated": "2024-01-15T10:58:20.207109Z",
+  "generated": "2024-01-15T14:04:50.315447Z",
   "generator": "pub",
   "generatorVersion": "3.2.3"
 }
