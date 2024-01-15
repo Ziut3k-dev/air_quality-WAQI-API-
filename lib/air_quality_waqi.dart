@@ -48,18 +48,18 @@ AirQualityWaqiLevel airQualityIndexToLevel(int index) {
 }
 
 class Iaqi {
-  late double co;
-  late double dew;
-  late double h;
-  late double no2;
-  late double o3;
-  late double p;
-  late double pm10;
-  late double pm25;
-  late double r;
-  late double so2;
-  late double t;
-  late double w;
+  final double co;
+  final double dew;
+  final double h;
+  final double no2;
+  final double o3;
+  final double p;
+  final double pm10;
+  final double pm25;
+  final double r;
+  final double so2;
+  final double t;
+  final double w;
 
   Iaqi({
     required this.co,
@@ -143,6 +143,8 @@ class AirQualityWaqiData {
   double get longitude => _longitude;
 
   bool get status => _status;
+
+  Iaqi get iaqi => _iaqi;
 
   AirQualityWaqiLevel get airQualityLevel => _airQualityLevel;
 

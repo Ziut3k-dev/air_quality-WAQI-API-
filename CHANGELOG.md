@@ -1,3 +1,5 @@
+## 1.2.0
+- Add getter for iaqi values
 ## 1.1.0
 - Add Iaqi values
 - Add station status 
