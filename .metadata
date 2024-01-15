@@ -5,6 +5,6 @@
 
 version:
   revision: cc949a8e8b9cf394b9290a8e80f87af3e207dce5
-  channel: beta
+  channel: release
 
 project_type: plugin
