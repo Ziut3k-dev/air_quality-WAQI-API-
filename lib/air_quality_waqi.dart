@@ -12,13 +12,6 @@ import 'package:http/http.dart' as http;
 
 /// Custom Exception for the plugin,
 /// Thrown whenever the API responds with an error and body could not be parsed.
-class AirQualityWaqiAPIException implements Exception {
-  String _cause;
-
-  AirQualityWaqiAPIException(this._cause);
-
-  String toString() => '${this.runtimeType} - $_cause';
-}
 
 enum AirQualityWaqiLevel {
   UNKNOWN,
@@ -81,40 +74,31 @@ class Iaqi {
 
 /// A class for storing Air Quality JSON Data fetched from the API.
 class AirQualityWaqiData {
-  late int _airQualityIndex;
-  late String _source, _place, _dominentpol;
-  late double _latitude, _longitude;
-  late AirQualityWaqiLevel _airQualityLevel;
-  late bool _status;
-  late Iaqi _iaqi;
+  late int airQualityIndex;
+  late String source, place, dominentpol;
+  late double latitude, longitude;
+  late AirQualityWaqiLevel airQualityLevel;
+  late bool status;
+  late Iaqi iaqi;
+
   AirQualityWaqiData(Map<String, dynamic> airQualityJson) {
-    _airQualityIndex =
+    airQualityIndex =
         int.tryParse(airQualityJson['data']['aqi'].toString()) ?? -1;
-
-    _place = airQualityJson['data']['city']['name'].toString();
-
-    _source = airQualityJson['data']['attributions'][0]['name'].toString();
-
-    _latitude =
+    place = airQualityJson['data']['city']['name'].toString();
+    source = airQualityJson['data']['attributions'][0]['name'].toString();
+    latitude =
         double.tryParse(airQualityJson['data']['city']['geo'][0].toString()) ??
-            -1.0;
-
-    _longitude =
+            0;
+    longitude =
         double.tryParse(airQualityJson['data']['city']['geo'][1].toString()) ??
-            -1.0;
+            0;
+    dominentpol = airQualityJson['data']['dominentpol'].toString();
+    airQualityLevel = airQualityIndexToLevel(airQualityIndex);
 
-    _dominentpol = airQualityJson['data']['dominentpol'].toString();
+    var statusString = airQualityJson['data']['status'].toString();
+    status = statusString == 'ok';
 
-    _airQualityLevel = airQualityIndexToLevel(_airQualityIndex);
-
-    var status = airQualityJson['data']['status'].toString();
-
-    if (status == 'ok') {
-      this._status = true;
-    } else {
-      this._status = false;
-    }
-    _iaqi = Iaqi(
+    iaqi = Iaqi(
       co: airQualityJson['data']['iaqi']['co']['v'].toDouble(),
       dew: airQualityJson['data']['iaqi']['dew']['v'].toDouble(),
       h: airQualityJson['data']['iaqi']['h']['v'].toDouble(),
@@ -130,44 +114,27 @@ class AirQualityWaqiData {
     );
   }
 
-  int get airQualityIndex => _airQualityIndex;
-
-  String get place => _place;
-
-  String get source => _source;
-
-  double get latitude => _latitude;
-
-  String get dominentpol => _dominentpol;
-
-  double get longitude => _longitude;
-
-  bool get status => _status;
-
-  Iaqi get iaqi => _iaqi;
-
-  AirQualityWaqiLevel get airQualityLevel => _airQualityLevel;
-
+  @override
   String toString() {
     return '''
-    Air Quality Level: ${_airQualityLevel.toString().split('.').last}
-    AQI: $_airQualityIndex
-    Place Name: $_place
-    Source: $_source
-    Location: ($_latitude, $_longitude)
-    Dominentpol: $_dominentpol
-    CO: ${_iaqi.co}
-    Dew: ${_iaqi.dew}
-    H: ${_iaqi.h}
-    NO2: ${_iaqi.no2}
-    O3: ${_iaqi.o3}
-    P: ${_iaqi.p}
-    PM10: ${_iaqi.pm10}
-    PM25: ${_iaqi.pm25}
-    R: ${_iaqi.r}
-    SO2: ${_iaqi.so2}
-    T: ${_iaqi.t}
-    W: ${_iaqi.w}
+    Air Quality Level: ${airQualityLevel.toString().split('.').last}
+    AQI: $airQualityIndex
+    Place Name: $place
+    Source: $source
+    Location: ($latitude, $longitude)
+    Dominant Pollutant: $dominentpol
+    CO: ${iaqi.co}
+    Dew: ${iaqi.dew}
+    H: ${iaqi.h}
+    NO2: ${iaqi.no2}
+    O3: ${iaqi.o3}
+    P: ${iaqi.p}
+    PM10: ${iaqi.pm10}
+    PM25: ${iaqi.pm25}
+    R: ${iaqi.r}
+    SO2: ${iaqi.so2}
+    T: ${iaqi.t}
+    W: ${iaqi.w}
     ''';
   }
 }
@@ -192,27 +159,22 @@ class AirQualityWaqi {
           double lat, double lon) async =>
       await _airQualityFromUrl('geo:$lat;$lon');
 
-  /// Returns an [AirQualityWaqiData] object given using the IP address.
-  Future<AirQualityWaqiData> feedFromIP() async =>
-      await _airQualityFromUrl('here');
+  // /// Returns an [AirQualityWaqiData] object given using the IP address.
+  // Future<AirQualityWaqiData> feedFromIP() async =>
+  //     await _airQualityFromUrl('here');
 
   /// Send API request given a URL
   Future<Map<String, dynamic>?> _requestAirQualityWaqiFromURL(
       String keyword) async {
-    /// Make url using the keyword
-    String url = '$_endpoint/$keyword/?token=$_token';
+    final url = '$_endpoint/$keyword/?token=$_token';
 
-    /// Send HTTP get response with the url
-    http.Response response = await http.get(Uri.parse(url));
+    final response = await http.get(Uri.parse(url));
 
-    /// Perform error checking on response:
-    /// Status code 200 means everything went well
     if (response.statusCode == 200) {
-      Map<String, dynamic>? jsonBody = json.decode(response.body);
-      return jsonBody;
+      return json.decode(response.body) as Map<String, dynamic>?;
     }
-    throw AirQualityWaqiAPIException(
-        "OpenWeather API Exception: ${response.body}");
+
+    throw Exception("OpenWeather API Exception: ${response.body}");
   }
 
   /// Fetch current weather based on geographical coordinates
