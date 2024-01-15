@@ -1,3 +1,5 @@
+## 1.3.0
+- Code optymalization 
 ## 1.2.0
 - Add getter for iaqi values
 ## 1.1.0
