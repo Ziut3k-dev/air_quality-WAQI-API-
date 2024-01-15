@@ -27,9 +27,9 @@ void main() {
       print(feedFromGeoLocation);
     });
 
-    test('- via  IP (depends on service provider)', () async {
-      AirQualityWaqiData fromIP = await airQuality.feedFromIP();
-      print(fromIP);
-    });
+    // test('- via  IP (depends on service provider)', () async {
+    // AirQualityWaqiData fromIP = await airQuality.feedFromIP();
+    // print(fromIP);
+    // });
   });
 }

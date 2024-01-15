@@ -1,3 +1,7 @@
+air_quality_waqi
+2.17
+file:///Users/kychu/.pub-cache/hosted/pub.dev/air_quality_waqi-1.2.0/
+file:///Users/kychu/.pub-cache/hosted/pub.dev/air_quality_waqi-1.2.0/lib/
 async
 2.18
 file:///Users/kychu/.pub-cache/hosted/pub.dev/async-2.11.0/
@@ -86,10 +90,6 @@ web
 3.2
 file:///Users/kychu/.pub-cache/hosted/pub.dev/web-0.3.0/
 file:///Users/kychu/.pub-cache/hosted/pub.dev/web-0.3.0/lib/
-air_quality_waqi
-2.17
-file:///Users/kychu/Documents/GIT/FLUTTER_PLUGINS/air_quality_waqi/
-file:///Users/kychu/Documents/GIT/FLUTTER_PLUGINS/air_quality_waqi/lib/
 example
 2.12
 file:///Users/kychu/Documents/GIT/FLUTTER_PLUGINS/air_quality_waqi/example/
