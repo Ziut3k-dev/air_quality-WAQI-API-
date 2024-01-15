@@ -1,3 +1,4 @@
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 # Air Quality Index
 
 Collects air quality index from the [World's Air Quality Index](https://waqi.info/) service.
@@ -41,3 +42,7 @@ AirQualityWaqiData feedFromGeoLocation =
 AirQualityWaqiData fromIP = 
     await airQualityWaqi.feedFromIP();
 ```
+
+## License
+
+Licensed under the [MIT License](LICENSE).
