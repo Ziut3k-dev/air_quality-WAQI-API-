@@ -100,18 +100,18 @@ class AirQualityWaqiData {
     status = statusString == 'ok';
 
     iaqi = Iaqi(
-      co: airQualityJson['data']['iaqi']['co']['v'].toDouble(),
-      dew: airQualityJson['data']['iaqi']['dew']['v'].toDouble(),
-      h: airQualityJson['data']['iaqi']['h']['v'].toDouble(),
-      no2: airQualityJson['data']['iaqi']['no2']['v'].toDouble(),
-      o3: airQualityJson['data']['iaqi']['o3']['v'].toDouble(),
-      p: airQualityJson['data']['iaqi']['p']['v'].toDouble(),
-      pm10: airQualityJson['data']['iaqi']['pm10']['v'].toDouble(),
-      pm25: airQualityJson['data']['iaqi']['pm25']['v'].toDouble(),
-      r: airQualityJson['data']['iaqi']['r']['v'].toDouble(),
-      so2: airQualityJson['data']['iaqi']['so2']['v'].toDouble(),
-      t: airQualityJson['data']['iaqi']['t']['v'].toDouble(),
-      w: airQualityJson['data']['iaqi']['w']['v'].toDouble(),
+      co: airQualityJson['data']['iaqi']['co']?['v']?.toDouble() ?? 0,
+      dew: airQualityJson['data']['iaqi']['dew']?['v']?.toDouble() ?? 0,
+      h: airQualityJson['data']['iaqi']['h']?['v']?.toDouble() ?? 0,
+      no2: airQualityJson['data']['iaqi']['no2']?['v']?.toDouble() ?? 0,
+      o3: airQualityJson['data']['iaqi']['o3']?['v']?.toDouble() ?? 0,
+      p: airQualityJson['data']['iaqi']['p']?['v']?.toDouble() ?? 0,
+      pm10: airQualityJson['data']['iaqi']['pm10']?['v']?.toDouble() ?? 0,
+      pm25: airQualityJson['data']['iaqi']['pm25']?['v']?.toDouble() ?? 0,
+      r: airQualityJson['data']['iaqi']['r']?['v']?.toDouble() ?? 0,
+      so2: airQualityJson['data']['iaqi']['so2']?['v']?.toDouble() ?? 0,
+      t: airQualityJson['data']['iaqi']['t']?['v']?.toDouble() ?? 0,
+      w: airQualityJson['data']['iaqi']['w']?['v']?.toDouble() ?? 0,
     );
   }
 
