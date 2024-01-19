@@ -74,8 +74,8 @@ class Iaqi {
 
 /// A class for storing Air Quality JSON Data fetched from the API.
 class AirQualityWaqiData {
-  late int airQualityIndex;
-  late String source, place, dominentpol;
+  late int airQualityIndex, idx;
+  late String source, place, dominentpol, debugSync;
   late double latitude, longitude;
   late AirQualityWaqiLevel airQualityLevel;
   late bool status;
@@ -83,7 +83,8 @@ class AirQualityWaqiData {
 
   AirQualityWaqiData(Map<String, dynamic> airQualityJson) {
     airQualityIndex =
-        int.tryParse(airQualityJson['data']['aqi'].toString()) ?? -1;
+        int.tryParse(airQualityJson['data']['aqi'].toString()) ?? 0;
+    idx = int.tryParse(airQualityJson['data']['idx'].toString()) ?? 0;
     place = airQualityJson['data']['city']['name'].toString();
     source = airQualityJson['data']['attributions'][0]['name'].toString();
     latitude =
@@ -94,7 +95,7 @@ class AirQualityWaqiData {
             0;
     dominentpol = airQualityJson['data']['dominentpol'].toString();
     airQualityLevel = airQualityIndexToLevel(airQualityIndex);
-
+    debugSync = airQualityJson['data']['debug']['sync'].toString();
     var statusString = airQualityJson['data']['status'].toString();
     status = statusString == 'ok';
 
