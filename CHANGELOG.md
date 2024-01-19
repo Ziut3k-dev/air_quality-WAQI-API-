@@ -1,3 +1,7 @@
+## 1.4.1
+- Fix tags 
+## 1.4.0
+- Fix for Iaqi index not exists 
 ## 1.3.0
 - Code optymalization 
 ## 1.2.0
