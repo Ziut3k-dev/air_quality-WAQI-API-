@@ -1,6 +1,7 @@
 name: air_quality_waqi
 description: Air quality index from the World's Air Quality Index (WAQI) service.
 version: 1.4.1
+publish_to: "devforyou.pl"
 homepage: https://github.com/Ziut3k-dev/air_quality-WAQI-API-
 environment:
   sdk: ">=2.17.0 <4.0.0"
